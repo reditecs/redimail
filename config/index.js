@@ -1,6 +1,4 @@
-{
-  
-  
+module.exports = {
   "express": {
     port: 3000
   },
@@ -13,6 +11,4 @@
     hostname: "reditecs",
     banner: "RediTecs.com mailserver"
   }
-  
-  
 }
