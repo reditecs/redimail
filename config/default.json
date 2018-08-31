@@ -1,15 +1,13 @@
 {
   
   
-  express: {
+  "express": {
     port: 3000
   },
-  
-  mongodb: {
+  "mongodb": {
     url: "mongodb://root:Qwerty22123..@ds233452.mlab.com:33452/tempmail"
   },
-  
-  mailserver: {
+  "mailserver": {
     host: "localhost",
     port: 25,
     hostname: "reditecs",
