@@ -1,0 +1,28 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Temporary email system - multiple domains - your own disposable email",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Email",
+    "temporal",
+    "email",
+    "temporal"
+  ],
+  "author": "Luis Eduardo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
+    "express": "^4.16.3",
+    "mailparser": "^2.3.3",
+    "mongoose": "^5.2.12",
+    "smtp-server": "^3.4.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
