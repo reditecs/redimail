@@ -19,7 +19,6 @@ const EmailSchema = new mongoose.Schema({
   inReplyTo: String,
   html: String,
   text: String,
-  original: String,
   sentDate: Date,
   receivedDate: {
     type: Date,
