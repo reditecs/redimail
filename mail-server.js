@@ -6,15 +6,31 @@ const MailParser = require('mailparser').simpleParser;
 const mongoose = require("mongoose")
 //Modelos
 const Email = require("./models/email")
+const Domain = require("./models/domain")
   
-
 const server = new SMTPServer({
 	name: config.mailserver.hostname,
 	banner: config.mailserver.banner,
 	secure: false,
 	disabledCommands: ['AUTH', 'STARTTLS'],
 	onRcptTo: (address, session, callback) => {
-	  return callback()
+    Domain.find({status: true, isPrivate: false}, (err, domains) => {
+      if(err){
+        return callback(new Error('DataBase Error'));
+      }else{
+        let domainMap = []
+        domains.forEach(function(dom) { 
+          domainMap.push(dom.domain)
+        })
+        var activeDomains = {domains: domainMap}
+        for(const domain of activeDomains) {
+          if (address.address.endsWith('@' + domain)) {
+            return callback();
+          }
+        }
+        return callback(new Error('Invalid email address'));
+      }
+    });
 	},
 	onData: (stream, session, callback) => {
     console.log("Conexion entrante detectada...")

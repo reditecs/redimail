@@ -4,6 +4,8 @@
   "description": "Temporary email system - multiple domains - your own disposable email",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
+    "mail": "nodemon mail-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

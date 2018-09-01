@@ -3,7 +3,8 @@ const DomainSchema = new mongoose.Schema({
   contactEmail: String,
   domain: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   isPrivate: {
     type: Boolean,
@@ -16,6 +17,10 @@ const DomainSchema = new mongoose.Schema({
   registerDate: {
     type: Date,
     default: Date.now()
+  },
+  status: {
+    type: Boolean,
+    default: false
   }
 })
 module.exports = mongoose.model("domain", DomainSchema)
