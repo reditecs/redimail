@@ -7,7 +7,6 @@ const mongoose = require("mongoose")
 //Modelos
 const Email = require("./models/email")
 const Domain = require("./models/domain")
-  
 const server = new SMTPServer({
 	name: config.mailserver.hostname,
 	banner: config.mailserver.banner,
@@ -22,8 +21,7 @@ const server = new SMTPServer({
         domains.forEach(function(dom) { 
           domainMap.push(dom.domain)
         })
-        var activeDomains = {domains: domainMap}
-        for(const domain of activeDomains) {
+        for(const domain of domainMap) {
           if (address.address.endsWith('@' + domain)) {
             return callback();
           }
@@ -87,11 +85,10 @@ const server = new SMTPServer({
           }
         })
       }
-      
-    });
-
+  
+    })
 	}
-});
+})
 
 mongoose.connect(config.mongodb.url,{ useNewUrlParser: true }, (err, res) => {
   if(err){

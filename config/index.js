@@ -1,5 +1,6 @@
 module.exports = {
   "express": {
+    defaultUrl: "dev.reditecs.xyz",
     port: 3000
   },
   "mongodb": {

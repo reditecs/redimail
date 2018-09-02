@@ -1,10 +1,10 @@
 "use strict"
-const config = require("./config/index")
+const config = require("./config")
 //Dependencias
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
-const apiRoutes = require("./routes/apiRoutes")
+const apiDomainRoutes = require("./routes/apiDomainRoutes")
 
 const app = express()
 
@@ -14,8 +14,7 @@ app.use(bodyParser.json())
 
 
 //Routes
-app.use("/api", apiRoutes)
-
+app.use("/api/domain", apiDomainRoutes)
 
 //BD
 mongoose.connect(config.mongodb.url,{ useNewUrlParser: true }, (err, res) => {

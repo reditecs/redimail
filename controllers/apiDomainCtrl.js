@@ -13,7 +13,7 @@ function listDomains(req, res){
      if(!err){
       let domainMap = []
       domains.forEach(function(dom) { 
-        domainMap.push(dom.domain)
+        domainMap.push(dom.domain + " - " + dom._id)
       })
       res.status(200).send({domains: domainMap})       
     }else{
@@ -32,7 +32,7 @@ function removeDomain(req, res){
       }else{
         res.status(500).send({message: "Error #105 - Database fail"})
       }
-    }); 
+    });    
   }
 }
 
@@ -91,9 +91,14 @@ function newDomain(req, res){
   }
 }
 
+function validateDomain(req,res){
+  res.status(200).send(req.headers.host)
+}
+
 module.exports = {
   welcomeMessage,
   newDomain,
   listDomains,
-  removeDomain
+  removeDomain,
+  validateDomain
 }
