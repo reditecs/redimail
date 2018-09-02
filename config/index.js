@@ -11,5 +11,10 @@ module.exports = {
     port: 25,
     hostname: "reditecs",
     banner: "RediTecs.com mailserver"
+  },
+  "delay": {
+    validDomainChecker: 0.5,
+    noValidDomainChecker: 0.05,
+    deleteEmailAfter: 1
   }
 }
