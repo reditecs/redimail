@@ -8,12 +8,11 @@ function welcomeMessage(req, res){
 }
 
 function listDomains(req, res){
- //Domain.find({status: true, isPrivate: false}, (err, domains) => {
- Domain.find({}, (err, domains) => {
+ Domain.find({status: true, isPrivate: false}, (err, domains) => {
      if(!err){
       let domainMap = []
       domains.forEach(function(dom) { 
-        domainMap.push(dom.domain + " - " + dom._id)
+        domainMap.push(dom.domain)
       })
       res.status(200).send({domains: domainMap})       
     }else{

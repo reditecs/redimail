@@ -49,6 +49,7 @@ const server = new SMTPServer({
         let html = parsed.html
         let text = parsed.text
         let mailDate = parsed.date
+        let now = new Date()
         console.log("Date: " + mailDate)
         console.log("Subject: " + subject)
         console.log("From: " + fromName + " ( " + fromAddress + ")")
@@ -70,12 +71,14 @@ const server = new SMTPServer({
             address: toAddress,
             name: toName
           },
+          toAddress: toAddress,
           messageId: messageId,
           references: references,
           inReplyTo: inReplyTo,
           html: html,
           text: text,
-          sentDate: mailDate
+          sentDate: mailDate,
+          receivedDate: now
         })
         email.save((err, emailStored) => {
           if(err){

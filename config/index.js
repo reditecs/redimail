@@ -15,7 +15,7 @@ module.exports = {
   "delay": {
     validDomainChecker: 0.5,
     noValidDomainChecker: 0.05,
-    deleteEmailAfter: 1,
+    deleteEmailAfter: 2,
     emailWorkerDelay: 0.05
   }
 }

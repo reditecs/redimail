@@ -4,11 +4,10 @@ const SMTPConnection = require('smtp-connection');
 const mailcomposer = require('mailcomposer');
 const Mail = require("../models/email")
 const config = require("../config")
-
+const service = require("../services")
 function welcomeMessage(req, res){
   res.status(200).send("Welcome to redimail API system!")
 }
-
 function test(req, res){
   if(!req.params.email){
     res.status(400).send({message: "Error #404 - Invalid email"})
@@ -38,10 +37,10 @@ function test(req, res){
 					connection.close();
 				}else{
           connection.quit();
-          res.status(200).send({message:"Email sent"})
         }
 			});
 		});
+  res.status(200).send({message:"Email sent"})
   }
 }
 
@@ -58,13 +57,29 @@ function mailbox(req, res){
       
         res.status(400).send({message: "Error #402 - Invalid email"})
 
-      }else{
-        
-        Mail.find({}).sort({receivedDate: 'desc'}).exec((err, mails) => {
+      }else{ 
+        Mail.find({"toAddress": email}).sort({receivedDate: 'desc'}).exec((err, mails) => {
            if(!err){
             let mailMap = []
             mails.forEach(function(dom) { 
-              mailMap.push({id: dom._id, subject: dom.subject})
+              let difference = service.diff_minutes(dom.receivedDate)
+              let remain = config.delay.deleteEmailAfter - difference
+              if(remain < 1){
+                Mail.remove({ _id: dom._id }, function(err) {
+                  if(err){
+                    console.log("Error en base de datos reportado => " + err)
+                  }
+                }); 
+              }else{
+                mailMap.push({
+                  id: dom._id,
+                  subject: dom.subject,
+                  fromName: dom.from.name,
+                  fromAddress: dom.from.address,
+                  from: dom.from.name + " (" + dom.from.address + ")",
+                  remain: remain
+                })
+              }
             })
             res.status(200).send({mailbox: mailMap})       
           }else{
@@ -99,16 +114,14 @@ function info(req, res){
         if(!mail){
           res.status(404).send({mensaje: "Error #410 - Not found"})
         }else{
-          res.status(200).send({ 
-          
+          res.status(200).send({
+            to: mail.to.address,
             fromName: mail.from.name,
             fromAddress: mail.from.address,
             from: mail.from.name + " (" + mail.from.address + ")",
             subject: mail.subject,
             sentDate: mail.sentDate,
-            receivedDate: mail.receivedDate
-          
-          })
+            receivedDate: mail.receivedDate})
         }
       }
     })
@@ -142,7 +155,7 @@ function txt(req, res){
         if(!mail){
           res.status(404).send({mensaje: "Error #416 - Not found"})
         }else{
-          res.status(200).send(mail.txt)
+          res.status(200).send(mail.text)
         }
       }
     })

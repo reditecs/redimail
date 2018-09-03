@@ -14,6 +14,7 @@ const EmailSchema = new mongoose.Schema({
     address: String,
     name: String
   },
+  toAddress: String,
   messageId: String,
   references: String,
   inReplyTo: String,
