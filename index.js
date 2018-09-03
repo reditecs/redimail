@@ -5,6 +5,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const apiDomainRoutes = require("./routes/apiDomainRoutes")
+const apiMailRoutes = require("./routes/apiMailRoutes")
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json())
 
 //Routes
 app.use("/api/domain", apiDomainRoutes)
+app.use("/api/mail", apiMailRoutes)
 
 //BD
 mongoose.connect(config.mongodb.url,{ useNewUrlParser: true }, (err, res) => {
