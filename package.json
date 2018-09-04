@@ -22,6 +22,8 @@
     "mailcomposer": "^4.0.2",
     "mailparser": "^2.3.3",
     "mongoose": "^5.2.12",
+    "pm2": "^3.0.4",
+    "pug": "^2.0.3",
     "request": "^2.88.0",
     "smtp-connection": "^4.0.2",
     "smtp-server": "^3.4.7"

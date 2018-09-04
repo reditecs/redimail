@@ -1,4 +1,8 @@
 module.exports = {
+  "app":{
+    name: "RediMail",
+    indexTitle: "RediMail - Free temporary email system!"
+  },
   "express": {
     defaultUrl: "dev.reditecs.xyz",
     port: 3000

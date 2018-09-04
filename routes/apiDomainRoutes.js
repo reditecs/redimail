@@ -4,11 +4,12 @@ const api = express.Router()
 const apiCtrl = require("../controllers/apiDomainCtrl")
 //Middlewares
 const vh = require("../middlewares/verifyHost")
+const ao = require("../middlewares/allowOrigin")
 //Api Routes
 api.get("/", vh, apiCtrl.welcomeMessage)
-api.get("/validate", apiCtrl.validateDomain)
-api.get("/list", vh, apiCtrl.listDomains)
-api.post("/remove", vh, apiCtrl.removeDomain)
+api.get("/validate", ao, apiCtrl.validateDomain)
+api.get("/list", ao, vh, apiCtrl.listDomains)
+api.post("/remove", ao, vh, apiCtrl.removeDomain)
 /*
 Remover con atributo id en post
 */

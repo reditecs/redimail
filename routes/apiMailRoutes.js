@@ -4,14 +4,15 @@ const api = express.Router()
 const apiCtrl = require("../controllers/apiMailCtrl")
 //Middlewares
 const vh = require("../middlewares/verifyHost")
+const ao = require("../middlewares/allowOrigin")
 //Api Routes
 api.get("/", vh, apiCtrl.welcomeMessage)
-api.get("/mailbox/:email",vh, apiCtrl.mailbox)
-api.get("/test/:email",vh, apiCtrl.test)
-api.get("/remove/:id",vh, apiCtrl.remove)
-api.get("/info/:id",vh, apiCtrl.info)
-api.get("/html/:id",vh, apiCtrl.html)
-api.get("/txt/:id",vh, apiCtrl.txt)
+api.get("/mailbox/:email",vh, ao, apiCtrl.mailbox)
+api.get("/test/:email",vh, ao, apiCtrl.test)
+api.get("/remove/:id",vh, ao, apiCtrl.remove)
+api.get("/info/:id",vh, ao, apiCtrl.info)
+api.get("/html/:id",vh, ao, apiCtrl.html)
+api.get("/txt/:id",vh, ao, apiCtrl.txt)
 
 
 
