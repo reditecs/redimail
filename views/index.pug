@@ -4,10 +4,36 @@ html
     include includes/styles
   body
     
-    header
-    
+    header.container-fluid
+      div.container
+        img(src="./img/LogoTipo149x60.png")
     section
-    
+      div.container
+        div.row
+          div.col-sm-12.text-center
+            table
+              tr
+                td
+                  input(type="text")#id.form-control
+                td
+                  |@
+                td
+                  select#domains.form-control
+                td 
+                  button#changeAddress.btn.btn-info Change
+                td 
+                  button#randomAddress.btn.btn-danger Random
+                td
+                    button#copyToClipboard.btn.btn-success Copy Email
+                td
+                  button#refreshMailbox.btn.btn-warning Refresh 
+                    span#reloadEmailsAfter -
+        hr
+        div#appLoader
+          table#mailbox.table.table-sm.table-bordered
+          div#emailLoader
+        
+          
     aside
     
     footer
