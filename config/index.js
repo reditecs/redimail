@@ -4,11 +4,11 @@ module.exports = {
     indexTitle: "RediMail - Free temporary email system!"
   },
   "express": {
-    defaultUrl: "dev.reditecs.xyz",
+    defaultUrl: "redimail.xyz",
     port: 3000
   },
   "mongodb": {
-    url: "mongodb://root:Qwerty22123..@ds233452.mlab.com:33452/tempmail"
+    url: "mongodb://localhost:33452/tempmail"
   },
   "mailserver": {
     host: "localhost",
